@@ -4,19 +4,18 @@ function findSearchTermInBooks(searchTerm, scannedTextObj) {
         "Results": []
     };
 
-    // Iterate over each book
     scannedTextObj.forEach(book => {
         // Flag to check if the term is found
         let found = false;
 
-        // Iterate over each content block
+
         book.Content.forEach(content => {
             // Check if the search term is in the text and not already found
             if (!found && content.Text.includes(searchTerm)) {
                 // Set found to true after the first occurrence
                 found = true;
 
-                // Add result to array
+
                 result.Results.push({
                     "ISBN": book.ISBN,
                     "Page": content.Page,
