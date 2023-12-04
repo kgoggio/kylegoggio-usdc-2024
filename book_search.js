@@ -52,6 +52,16 @@ const twentyLeaguesIn = [
                 "Page": 41,
                 "Line": 11,
                 "Text": "tHe creature, was coming. what were we going to do?"
+            },
+            {
+                "Page": 51,
+                "Line": 13,
+                "Text": "er, what do you mean, sir?"
+            },
+            {
+                "Page": 71,
+                "Line": 3,
+                "Text": "here"
             }
     ]
     }
@@ -89,9 +99,27 @@ const twentyLeaguesOut3 = {
 const twentyLeaguesOut4 = {
   SearchTerm: 'and',
   Results: [
-    { ISBN: '9780000528531', Page: 31, Line: 9 },
-    { ISBN: '9780000528531', Page: 31, Line: 10 }
+    { 
+        "ISBN": '9780000528531', 
+        "Page": 31, 
+        "Line": 9 
+    },
+    { 
+        "ISBN": '9780000528531', 
+        "Page": 31, 
+        "Line": 10 
+    }
   ]
+}
+const twentyLeaguesOut5 = {
+    "SearchTerm": "er",
+    "Results": [
+    {
+        "ISBN": '9780000528531',
+        "Page": 51,
+        "Line": 13,
+    }
+    ]
 }
 
 const test1result = findSearchTermInBooks("the", twentyLeaguesIn);
@@ -142,6 +170,17 @@ if (test5result.Results.length == 2) {
     console.log("Expected:", twentyLeaguesOut4.Results.length);
     console.log("Received:", test5result.Results.length);
 }
+//ensures that partial matches aren't picked up as false positive
+const test6result = findSearchTermInBooks("er", twentyLeaguesIn); 
+if (test4result.Results.length == 1) {
+    console.log("PASS: Test 6");
+} else {
+    console.log("FAIL: Test 6");
+    console.log("Expected:", twentyLeaguesOut5.Results.length);
+    console.log("Received:", test5result.Results.length);
+}
+
+
 
 
 
