@@ -4,7 +4,7 @@ function findSearchTermInBooks(searchTerm, scannedTextObj) {
         "Results": []
     }; 
 
-    var exactExpression = new RegExp("\\b" + searchTerm + "\\b(?![^.,!?\\s])", "i") //ensures that the scan is case-sensitive, and ignores all punctuation marks except for hyphens and apostraphes
+    var exactExpression = new RegExp("\\b" + searchTerm + "\\b(?![^.,!?\\s])") //ensures that the scan is case-sensitive, and ignores all punctuation marks except for hyphens and apostraphes
 
     scannedTextObj.forEach(book => {
         //starts a for Each Loop
@@ -181,9 +181,3 @@ if (test6result.Results.length == 1) {
     console.log("Expected:", twentyLeaguesOut5.Results.length);
     console.log("Received:", test6result.Results.length);
 }
-
-
-
-
-
-
