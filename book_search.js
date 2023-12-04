@@ -48,13 +48,15 @@ const twentyLeaguesIn = [
                 "Page": 31,
                 "Line": 10,
                 "Text": "eyes were, I asked myself how he had managed to see, and"
-            } 
+            }, 
             {
                 "Page": 41,
                 "Line": 11,
                 "Text": "tHe creature, was coming. what were we going to do?"
             }
+    ]
     }
+    
 ]
     
 /** Example output object */
