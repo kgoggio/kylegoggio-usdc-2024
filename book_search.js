@@ -81,7 +81,11 @@ const twentyLeaguesOut2 = {
         }
     ]
 }
-        
+
+const twentyLeaguesOut3 = {
+    "SearchTerm": "blue",
+    "Results": [] 
+}
 
 const test1result = findSearchTermInBooks("the", twentyLeaguesIn);
 if (JSON.stringify(twentyLeaguesOut) === JSON.stringify(test1result)) {
@@ -102,7 +106,7 @@ if (test2result.Results.length == 1) {
     console.log("Received:", test2result.Results.length);
 }
 
-/** We could choose to check that we get the right number of results. */
+//tests irregular letter capitalization; ensures that it will correctly find it
 const test3result = findSearchTermInBooks("tHe", twentyLeaguesIn); 
 if (test3result.Results.length == 1) {
     console.log("PASS: Test 3");
@@ -111,3 +115,15 @@ if (test3result.Results.length == 1) {
     console.log("Expected:", twentyLeaguesOut2.Results.length);
     console.log("Received:", test3result.Results.length);
 }
+
+//tests to ensure that in the event that a search term that doesn't exist within the input item, nothing is generated, except for the search term and an empty results variable
+const test4result = findSearchTermInBooks("blue", twentyLeaguesIn); 
+if (test3result.Results.length == 1) {
+    console.log("PASS: Test 4");
+} else {
+    console.log("FAIL: Test 4");
+    console.log("Expected:", twentyLeaguesOut3.Results.length);
+    console.log("Received:", test4result.Results.length);
+}
+
+
