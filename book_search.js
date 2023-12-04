@@ -11,9 +11,8 @@ function findSearchTermInBooks(searchTerm, scannedTextObj) {
 
         book.Content.forEach(content => {
             // Check if the search term is in the text and not already found
-            if (!found && content.Text.includes(searchTerm)) {
+            if (content.Text.includes(searchTerm)) {
                 // Set found to true after the first occurrence
-                found = true;
 
 
                 result.Results.push({
@@ -87,6 +86,14 @@ const twentyLeaguesOut3 = {
     "Results": [] 
 }
 
+const twentyLeaguesOut4 = {
+  SearchTerm: 'and',
+  Results: [
+    { ISBN: '9780000528531', Page: 31, Line: 9 },
+    { ISBN: '9780000528531', Page: 31, Line: 10 }
+  ]
+}
+
 const test1result = findSearchTermInBooks("the", twentyLeaguesIn);
 if (JSON.stringify(twentyLeaguesOut) === JSON.stringify(test1result)) {
     console.log("PASS: Test 1");
@@ -118,12 +125,24 @@ if (test3result.Results.length == 1) {
 
 //tests to ensure that in the event that a search term that doesn't exist within the input item, nothing is generated, except for the search term and an empty results variable
 const test4result = findSearchTermInBooks("blue", twentyLeaguesIn); 
-if (test3result.Results.length == 1) {
+if (test4result.Results.length == 0) {
     console.log("PASS: Test 4");
 } else {
     console.log("FAIL: Test 4");
     console.log("Expected:", twentyLeaguesOut3.Results.length);
     console.log("Received:", test4result.Results.length);
 }
+
+//tests whether in the event a term is contained in multiple passages/sections, all of those passages are contained within results (i.e if the word "and" is contained in page 42 section 1 and page 44 section 5, page 42 section 1 and page 44 section 5 are contained in the results array)
+const test5result = findSearchTermInBooks("and", twentyLeaguesIn); 
+if (test5result.Results.length == 2) {
+    console.log("PASS: Test 5");
+} else {
+    console.log("FAIL: Test 5");
+    console.log("Expected:", twentyLeaguesOut4.Results.length);
+    console.log("Received:", test5result.Results.length);
+}
+
+
 
 
