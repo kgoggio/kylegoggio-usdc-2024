@@ -4,6 +4,8 @@ function findSearchTermInBooks(searchTerm, scannedTextObj) {
         "Results": []
     }; 
 
+    var exactExpression = new RegExp("\\b" + searchTerm + "\\b(?![^.,!?\\s])", "i") //ensures that the scan is case-sensitive, and ignores all punctuation marks except for hyphens and apostraphes
+
     scannedTextObj.forEach(book => {
         //starts a for Each Loop
         let found = false;
@@ -11,7 +13,7 @@ function findSearchTermInBooks(searchTerm, scannedTextObj) {
 
         book.Content.forEach(content => {
             // Check if the search term is in the text and not already found
-            if (content.Text.includes(searchTerm)) {
+            if (exactExpression.test(content.Text)) {
                 // Set found to true after the first occurrence
 
 
