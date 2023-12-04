@@ -172,7 +172,7 @@ if (test5result.Results.length == 2) {
 }
 //ensures that partial matches aren't picked up as false positive
 const test6result = findSearchTermInBooks("er", twentyLeaguesIn); 
-if (test4result.Results.length == 1) {
+if (test6result.Results.length == 1) {
     console.log("PASS: Test 6");
 } else {
     console.log("FAIL: Test 6");
