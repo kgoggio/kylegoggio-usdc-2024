@@ -1,11 +1,11 @@
 function findSearchTermInBooks(searchTerm, scannedTextObj) {
-    var result = {
+    let result = {
         "SearchTerm": searchTerm,
         "Results": []
-    };
+    }; 
 
     scannedTextObj.forEach(book => {
-        // Flag to check if the term is found
+        //starts a for Each Loop
         let found = false;
 
 
@@ -49,7 +49,11 @@ const twentyLeaguesIn = [
                 "Line": 10,
                 "Text": "eyes were, I asked myself how he had managed to see, and"
             } 
-        ] 
+            {
+                "Page": 41,
+                "Line": 11,
+                "Text": "tHe creature, was coming. what were we going to do?"
+            }
     }
 ]
     
@@ -64,6 +68,18 @@ const twentyLeaguesOut = {
         }
     ]
 }
+
+const twentyLeaguesOut2 = {
+    "SearchTerm": "tHe",
+    "Results": [
+                {
+            "ISBN": "9780000528531",
+            "Page": 41,
+            "Line": 11
+        }
+    ]
+}
+        
 
 const test1result = findSearchTermInBooks("the", twentyLeaguesIn);
 if (JSON.stringify(twentyLeaguesOut) === JSON.stringify(test1result)) {
@@ -82,4 +98,14 @@ if (test2result.Results.length == 1) {
     console.log("FAIL: Test 2");
     console.log("Expected:", twentyLeaguesOut.Results.length);
     console.log("Received:", test2result.Results.length);
+}
+
+/** We could choose to check that we get the right number of results. */
+const test3result = findSearchTermInBooks("tHe", twentyLeaguesIn); 
+if (test3result.Results.length == 1) {
+    console.log("PASS: Test 3");
+} else {
+    console.log("FAIL: Test 3");
+    console.log("Expected:", twentyLeaguesOut2.Results.length);
+    console.log("Received:", test3result.Results.length);
 }
