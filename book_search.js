@@ -177,7 +177,7 @@ if (test4result.Results.length == 1) {
 } else {
     console.log("FAIL: Test 6");
     console.log("Expected:", twentyLeaguesOut5.Results.length);
-    console.log("Received:", test5result.Results.length);
+    console.log("Received:", test6result.Results.length);
 }
 
 
