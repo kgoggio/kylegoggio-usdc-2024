@@ -7,12 +7,11 @@ function findSearchTermInBooks(searchTerm, scannedTextObj) {
     var exactExpression = new RegExp("\\b" + searchTerm + "\\b(?![^.,!?\\s])") //ensures that the scan is case-sensitive, and ignores all punctuation marks except for hyphens and apostraphes
 
     scannedTextObj.forEach(book => {
-        
-        let found = false;
+//iterates through each book in the JSON object
 
 
         book.Content.forEach(content => {
-            // Check if the search term is in the text and not already found
+       //checks the content for the keyword, then adds it to the Result Array if it matches
             if (exactExpression.test(content.Text)) {
 
 
@@ -123,6 +122,12 @@ const twentyLeaguesOut5 = {
     ]
 }
 
+
+const twentyLeaguesOut6 = {
+    "SearchTerm": "Er",
+    "Results": [] 
+}
+
 const test1result = findSearchTermInBooks("the", twentyLeaguesIn);
 if (JSON.stringify(twentyLeaguesOut) === JSON.stringify(test1result)) {
     console.log("PASS: Test 1");
@@ -179,4 +184,13 @@ if (test6result.Results.length == 1) {
     console.log("FAIL: Test 6");
     console.log("Expected:", twentyLeaguesOut5.Results.length);
     console.log("Received:", test6result.Results.length);
+}
+//ensures that partial matches aren't picked up and also ensures partial matches with different punctuation aren't included
+const test7result = findSearchTermInBooks("blue", twentyLeaguesIn); 
+if (test7result.Results.length == 0) {
+    console.log("PASS: Test 7");
+} else {
+    console.log("FAIL: Test 7");
+    console.log("Expected:", twentyLeaguesOut6.Results.length);
+    console.log("Received:", test7result.Results.length);
 }
