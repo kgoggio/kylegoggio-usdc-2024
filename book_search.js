@@ -7,14 +7,13 @@ function findSearchTermInBooks(searchTerm, scannedTextObj) {
     var exactExpression = new RegExp("\\b" + searchTerm + "\\b(?![^.,!?\\s])") //ensures that the scan is case-sensitive, and ignores all punctuation marks except for hyphens and apostraphes
 
     scannedTextObj.forEach(book => {
-        //starts a for Each Loop
+        
         let found = false;
 
 
         book.Content.forEach(content => {
             // Check if the search term is in the text and not already found
             if (exactExpression.test(content.Text)) {
-                // Set found to true after the first occurrence
 
 
                 result.Results.push({
@@ -133,7 +132,7 @@ if (JSON.stringify(twentyLeaguesOut) === JSON.stringify(test1result)) {
     console.log("Received:", test1result);
 }
 
-/** We could choose to check that we get the right number of results. */
+
 const test2result = findSearchTermInBooks("the", twentyLeaguesIn); 
 if (test2result.Results.length == 1) {
     console.log("PASS: Test 2");
